@@ -6,9 +6,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { FlightSearchComponent } from './flight-search/flight-search.component';
-import { DefaultFlightService, DummyFlightService, FlightService } from './flight-search/flight.service';
+import { FlightSearchComponent } from './flight-booking/flight-search/flight-search.component';
+import { DefaultFlightService, DummyFlightService, FlightService } from './flight-booking/flight-search/flight.service';
 import { environment } from '../environments/environment';
+import { CityPipe } from './shared/city.pipe';
+import { FlightBookingModule } from './flight-booking/flight-booking.module';
 
 const DEBUG = false;
 
@@ -17,30 +19,18 @@ const DEBUG = false;
    imports: [
       BrowserModule,
       HttpClientModule,
-      FormsModule,
+      FlightBookingModule,
    ],
    declarations: [
       AppComponent,
       SidebarComponent,
-      NavbarComponent,
-      FlightSearchComponent
+      NavbarComponent
    ],
    providers: [
-      // {
-      //    provide: FlightService,
-      //    // useClass: DummyFlightService
-      //    useFactory: (http: HttpClient) => {
-      //       if (DEBUG) {
-      //          return new DummyFlightService();
-      //       } else {
-      //          return new DefaultFlightService(http);
-      //       }
-      //    },
-      //    deps: [HttpClient]
-      // }
    ],
    bootstrap: [
       AppComponent
    ]
 })
 export class AppModule { }
+

@@ -1,0 +1,49 @@
+<div class="form-group">
+  <label>Von</label>
+  <input class="form-control" [(ngModel)]="from">
+</div>
+
+<div class="form-group">
+  <label>Nach</label>
+  <input class="form-control" [(ngModel)]="to">
+</div>
+
+<button class="btn" [disabled]="!from || !to" (click)="search()">Suchen</button>
+
+<div class="row">
+<div *ngFor="let f of flights" >
+
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <flight-card 
+      [item]="f" 
+      [(selected)]="basket[f.id]"></flight-card>
+  </div>  
+  
+</div>
+</div>
+
+<!-- <flight-card 
+    [item]="f" 
+    [selected]="basket[f.id]"
+    (selectedChange)="basket[f.id] = $event"
+    ></flight-card>-->
+
+<!-- 
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Date</th>
+  </tr>
+  <tr *ngFor="let flight of flights">
+    <td>{{flight.id}}</td>
+    <td>{{flight.from | city:'long'}}</td>
+    <td>{{flight.to |city:'short'}}</td>
+    <td>{{flight.date | date:'dd.MM.yyyy HH:mm'}}</td>
+  </tr>
+</table> -->
+
+<pre>
+  {{basket | json}}
+</pre>
