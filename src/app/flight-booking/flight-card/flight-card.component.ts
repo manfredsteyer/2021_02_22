@@ -12,7 +12,7 @@ export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
 
-  constructor() { 
+  constructor() {
     console.debug('constructor', this.selected, this.item)
   }
 

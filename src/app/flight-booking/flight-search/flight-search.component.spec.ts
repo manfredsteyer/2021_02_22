@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { FlightSearchComponent } from './flight-search.component';
 
-describe('FlightSearchComponent', () => {
+fdescribe('FlightSearchComponent', () => {
   let component: FlightSearchComponent;
   let fixture: ComponentFixture<FlightSearchComponent>;
 

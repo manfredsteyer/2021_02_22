@@ -9,13 +9,13 @@ import { PassengerSearchComponent } from './passenger-search/passenger-search.co
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
 
 const FLIGHT_BOOKING_ROUTES: Routes = [{
-  path: 'flight-booking/flight-search',
+  path: 'flight-search',
   component: FlightSearchComponent
 }, {
-  path: 'flight-booking/passenger-search',
+  path: 'passenger-search',
   component: PassengerSearchComponent
 }, {
-  path: 'flight-booking/flight-edit/:flightId',
+  path: 'flight-edit/:flightId',
   component: FlightEditComponent
 }]
 
