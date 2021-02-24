@@ -19,19 +19,24 @@ export class FlightSearchComponent implements OnInit {
 
   from: string;
   to: string;
-  flights: Array<Flight>;
+  flights: Array<Flight> = [];
 
   basket: object = {
     "3": true,
     "5": true
   };
+  selectFlight: Flight;
 
   constructor(private flightService: FlightService) {}
 
   ngOnInit() {
   }
 
-  search(form: NgForm) {
+  search() {
+
+    if (!this.from || !this.to) {
+      return;
+    }
 
     this.flightService
       .find(this.from, this.to)
