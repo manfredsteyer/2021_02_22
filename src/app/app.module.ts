@@ -11,20 +11,35 @@ import { DefaultFlightService, DummyFlightService, FlightService } from './fligh
 import { environment } from '../environments/environment';
 import { CityPipe } from './shared/city.pipe';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const DEBUG = false;
 
+const APP_ROUTES: Routes = [ {
+  path: 'home',
+  component: HomeComponent
+}, {
+  path: '',
+  redirectTo: 'home',
+  pathMatch: 'full'
+}, {
+  path: '**',
+  redirectTo: 'home'
+}];
 
 @NgModule({
    imports: [
       BrowserModule,
       HttpClientModule,
       FlightBookingModule,
+      RouterModule.forRoot(APP_ROUTES)
    ],
    declarations: [
       AppComponent,
       SidebarComponent,
-      NavbarComponent
+      NavbarComponent,
+      HomeComponent
    ],
    providers: [
    ],

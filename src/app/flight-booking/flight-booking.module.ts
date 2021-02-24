@@ -4,16 +4,33 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { FlightCardComponent } from './flight-card/flight-card.component';
+import { RouterModule, Routes } from '@angular/router';
+import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
+import { FlightEditComponent } from './flight-edit/flight-edit.component';
+
+const FLIGHT_BOOKING_ROUTES: Routes = [{
+  path: 'flight-booking/flight-search',
+  component: FlightSearchComponent
+}, {
+  path: 'flight-booking/passenger-search',
+  component: PassengerSearchComponent
+}, {
+  path: 'flight-booking/flight-edit/:flightId',
+  component: FlightEditComponent
+}]
 
 @NgModule({
   imports: [
-    CommonModule, 
-    // FormsModule, -- kommt jetzt über SharedModule --+ 
-    SharedModule // <----------------------------------+
+    CommonModule,
+    // FormsModule, -- kommt jetzt über SharedModule --+
+    SharedModule, // <----------------------------------+
+    RouterModule.forChild(FLIGHT_BOOKING_ROUTES)
   ],
   declarations: [
     FlightSearchComponent,
-    FlightCardComponent
+    FlightCardComponent,
+    PassengerSearchComponent,
+    FlightEditComponent
   ],
   providers: [
       // HINT: Refactored to new Syntax with @Injectable(...)
@@ -31,7 +48,6 @@ import { FlightCardComponent } from './flight-card/flight-card.component';
       // }
   ],
   exports: [
-    FlightSearchComponent
   ]
 })
 export class FlightBookingModule { }
