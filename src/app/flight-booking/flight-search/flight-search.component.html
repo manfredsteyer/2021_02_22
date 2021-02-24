@@ -1,34 +1,41 @@
-<div class="form-group">
-  <label>Von</label>
-  <input class="form-control" [(ngModel)]="from">
-</div>
-
-<div class="form-group">
-  <label>Nach</label>
-  <input class="form-control" [(ngModel)]="to">
-</div>
-
-<button class="btn" [disabled]="!from || !to" (click)="search()">Suchen</button>
+<form #f="ngForm" roundTrip>
+  <div class="form-group">
+    <label>Von</label>
+    <input class="form-control" name="from" [(ngModel)]="from" city [validCities]="['Hamburg', 'Graz', 'München']" required minlength="3">
+  </div>
+  <div class="form-group">
+    <label>Nach</label>
+    <input class="form-control" name="to" [(ngModel)]="to" required>
+  </div>
+  <div *ngIf="f?.hasError('roundTrip') && f.dirty">
+    Rundflüge sind in Zeiten von COVID nicht erlaubt!
+  </div>
+  <div *ngIf="f?.controls['from']?.hasError('wrongCity')">
+    Ihre Eingabe {{ f?.controls['from']?.errors.wrongCity }} ist nicht gültig.
+    Gültige werte sind {{ f?.controls['from']?.errors.allowedCities }}
+  </div>
+</form>
+<button class="btn" [disabled]="!f?.valid" (click)="search(f)">Suchen</button>
 
 <div class="row">
 <div *ngFor="let f of flights" >
 
   <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <flight-card 
-      [item]="f" 
+    <flight-card
+      [item]="f"
       [(selected)]="basket[f.id]"></flight-card>
-  </div>  
-  
+  </div>
+
 </div>
 </div>
 
-<!-- <flight-card 
-    [item]="f" 
+<!-- <flight-card
+    [item]="f"
     [selected]="basket[f.id]"
     (selectedChange)="basket[f.id] = $event"
     ></flight-card>-->
 
-<!-- 
+<!--
 <table class="table">
   <tr>
     <th>Id</th>

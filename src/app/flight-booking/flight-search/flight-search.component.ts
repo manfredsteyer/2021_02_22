@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Flight } from '../../entities/flight';
 import { DummyFlightService, FlightService } from './flight.service';
 
@@ -30,7 +31,8 @@ export class FlightSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  search() {
+  search(form: NgForm) {
+
     this.flightService
       .find(this.from, this.to)
       .subscribe((flights: Flight[]) => {
